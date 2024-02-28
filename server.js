@@ -1,0 +1,28 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+let uploadedLinksCount = 0;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.get('/api/links/count', (req, res) => {
+    res.json({ count: uploadedLinksCount });
+});
+
+app.post('/api/upload/link', (req, res) => {
+    const { link } = req.body;
+    if (link) {
+        // يمكنك هنا إضافة رابط إلى قاعدة البيانات
+        uploadedLinksCount++;
+        res.status(200).json({ message: 'Link uploaded successfully.' });
+    } else {
+        res.status(400).json({ error: 'Invalid link.' });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
