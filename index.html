@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Link Uploader</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <h1>Link Uploader</h1>
-    <input type="text" id="linkInput" placeholder="Enter your link here...">
-    <button onclick="uploadLink()">Upload Link</button>
+    <form id="linkForm">
+      <input type="text" id="linkInput" placeholder="Enter your link here...">
+      <button type="submit">Upload Link</button>
+    </form>
     <p id="statusMessage"></p>
   </div>
 
