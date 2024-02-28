@@ -1,12 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+require('dotenv').config(); // استدعاء dotenv
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let uploadedLinksCount = 0;
+// قراءة رابط قاعدة البيانات من ملف .env
+const mongoURI = process.env.MONGODB_URI;
+
+// الاتصال بقاعدة البيانات
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// تعريف نموذج Mongoose إذا كنت تستخدمه
+// const YourModel = mongoose.model('YourModel', yourSchema);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+let uploadedLinksCount = 0;
 
 app.get('/api/links/count', (req, res) => {
     res.json({ count: uploadedLinksCount });
